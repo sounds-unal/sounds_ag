@@ -10,16 +10,22 @@ import {
 	categoryTypeDef
 } from './sounds/categories/typeDefs';
 
+import {TypesDefPlay, categoryQueriesPlay} from './sounds/sounds_play/typeDefs'
+
 import categoryResolvers from './sounds/categories/resolvers';
+
+import categoryResolversPlay from './sounds/sounds_play/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		categoryTypeDef
+		categoryTypeDef,
+		TypesDefPlay
 	],
 	[
-		categoryQueries
+		categoryQueries,
+		categoryQueriesPlay
 	],
 	[
 		categoryMutations
@@ -31,6 +37,7 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		categoryResolvers
+		categoryResolvers,
+		categoryResolversPlay
 	)
 });
