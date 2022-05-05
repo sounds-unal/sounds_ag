@@ -20,6 +20,8 @@ import categoryResolversAuth from './sounds/sounds_auth/resolvers'
 
 
 
+import categoryResolversInte from './sounds/sounds_inte/resolvers';
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[

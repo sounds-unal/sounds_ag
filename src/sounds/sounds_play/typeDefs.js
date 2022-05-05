@@ -19,5 +19,3 @@ export const categoryQueriesPlay= `
       songsbyartist(artist: String!): [CategoryPlay]!
       getliryc(id: Int!): [CategoryLiryc]!
   `;
-
-
