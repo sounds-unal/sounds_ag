@@ -16,6 +16,8 @@ import categoryResolvers from './sounds/categories/resolvers';
 
 import categoryResolversPlay from './sounds/sounds_play/resolvers';
 
+import categoryResolversInte from './sounds/sounds_inte/resolvers';
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
