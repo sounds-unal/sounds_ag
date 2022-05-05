@@ -17,9 +17,7 @@ import categoryResolversPlay from './sounds/sounds_play/resolvers';
 import {TypesDefAuth,categoryQueriesAuth, categoryMutationsAuth } from './sounds/sounds_auth/typeDefs';
 import categoryResolversAuth from './sounds/sounds_auth/resolvers'
 
-
-
-
+import {TypesDefInte,categoryQueriesInte } from './sounds/sounds_inte/typeDefs';
 import categoryResolversInte from './sounds/sounds_inte/resolvers';
 
 // merge the typeDefs
