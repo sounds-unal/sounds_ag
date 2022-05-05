@@ -9,26 +9,33 @@ import {
 	categoryQueries,
 	categoryTypeDef
 } from './sounds/categories/typeDefs';
-
-import {TypesDefPlay, categoryQueriesPlay} from './sounds/sounds_play/typeDefs'
-
 import categoryResolvers from './sounds/categories/resolvers';
 
+import {TypesDefPlay, categoryQueriesPlay} from './sounds/sounds_play/typeDefs'
 import categoryResolversPlay from './sounds/sounds_play/resolvers';
+
+import {TypesDefAuth,categoryQueriesAuth, categoryMutationsAuth } from './sounds/sounds_auth/typeDefs';
+import categoryResolversAuth from './sounds/sounds_auth/resolvers'
+
+
+
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
 		categoryTypeDef,
-		TypesDefPlay
+		TypesDefPlay,
+		TypesDefAuth
 	],
 	[
 		categoryQueries,
-		categoryQueriesPlay
+		categoryQueriesPlay,
+		categoryQueriesAuth
 	],
 	[
-		categoryMutations
+		categoryMutations,
+		categoryMutationsAuth
 	]
 );
 
@@ -38,6 +45,8 @@ export default makeExecutableSchema({
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		categoryResolvers,
-		categoryResolversPlay
+		categoryResolversPlay,
+		categoryResolversAuth
+		
 	)
 });
