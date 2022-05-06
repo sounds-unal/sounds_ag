@@ -12,7 +12,7 @@ import { formatErr } from './utilities';
 const app = new Koa();
 const router = new KoaRouter();
 const PORT = process.env.PORT || 5000;
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
 app.use(koaLogger());
 app.use(koaCors());
