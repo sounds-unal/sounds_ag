@@ -20,6 +20,6 @@ Puerto TCP a usar: 5000.
    
    Desplegar la base de datos, mediante el siguiente comando:
 
-        docker run -p 5000:5000 --add-host=host.docker.internal:host-gateway sounds_ag
+        docker run --name sounds_ag -p 5000:5000 --add-host=host.docker.internal:host-gateway sounds_ag
 
 3. Ejecución de las peticiones HTTP sobre la API-GraphQL del API Gateway: http://localhost:5000/graphiql. Posibles errores corriendo _graphiql_ se debe a no coincidencia de _id_. Corregir desde la base de datos respectiva (ej. phpmyadmin).
