@@ -1,6 +1,6 @@
 # sounds_ag
 Sounds API gateway.
-* `puerto 4000`.
+* Puerto: `4000`.
 * Añadir puertos de respectivos microservicios: `sounds_ag/src/sounds/categories/server.js`.
 
 1. Build image.
