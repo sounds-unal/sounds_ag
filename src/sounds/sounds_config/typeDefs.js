@@ -1,40 +1,47 @@
 export const TypesDefConfig =`
     type suscripcion {
-        _id: String
         nombre: String!
         precio:Int!
         descripcion: String!
     }
+    input suscripInput{
+        nombre: String
+        precio:Int
+        descripcion: String
+    }
+
     type notificacion{
-        _id:String
-          planes: Boolean
-          musicaNueva: Boolean
-          playlist: Boolean
- 
+          planes: Boolean!
+          musicaNueva: Boolean!
+          playlist: Boolean!
     }
     input notInput {
-        _id:String
         planes: Boolean
         musicaNueva: Boolean
         playlist: Boolean
-
     }
+
     type configuracion{
-        _id: String!
-        idUsuario: String!
         privacidad: Boolean!
+        suscripcion:suscripcion!
+        notificacion:notificacion!
+    }
+    input configInput{
+        privacidad: Boolean
     }
 
 `;
+//delete _id suscripcion 
 
 export const QueryConfig=`
     suscripciones(id:String): [suscripcion]!
     getNotificaciones:[notificacion]!
-    configuraciones:[configuracion]
+    configuraciones:[configuracion]!
 `;
 
 export const MutationsConfig=`
 updateNotification(id: String, not: notInput!):notificacion!
+updateConfig(id:String, config:configInput!):configuracion!
 
 
 `;

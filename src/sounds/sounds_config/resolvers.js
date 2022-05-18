@@ -6,12 +6,13 @@ const GET_NOTIF='notificaciones';
 const GET_SUSCRIP='suscripciones';
 const GET_CONFIG='configuraciones';
 const UPDATE_NOTIF='updateNotification';
+const UPDATE_CONFIG="updateConfig";
 
 const resolvers = {
 	Query: {
-		suscripciones: (_,idSus) =>
-			generalRequest(`${URL}/${GET_SUSCRIP}?=${idSus}`, 'GET'),
-			//generalRequest(`${URL}/update`, 'GET')
+		suscripciones: (_,id) =>
+			generalRequest(`${URL}/${GET_SUSCRIP}?=${id}`, 'GET'),
+
 
 		configuraciones:(_)=>
 			generalRequest(`${URL}/${GET_CONFIG}`,'GET'),
@@ -26,10 +27,11 @@ const resolvers = {
 		
 		
 		updateNotification:(_,{id,not})=>
-			generalRequest(`${URL}/${UPDATE_NOTIF}/${UPDATE}/${id}`, 'PUT',not),
-/*
-			updateParkingById:(_,{id,parking})=>
-			generalRequest(`${URL}/${PARKINGS}/${UPDATE}/${id}`, 'PUT',parking),*/
+			generalRequest(`${URL}/${UPDATE_NOTIF}/${id}`, 'PUT',not),
+
+		updateConfig:(_,{id,config})=>
+			generalRequest(`${URL}/${UPDATE_CONFIG}/${id}`, 'PUT',config),
+
 
 	}
 };
