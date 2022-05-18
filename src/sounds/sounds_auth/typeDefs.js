@@ -1,27 +1,25 @@
 export const TypesDefAuth = `
-  type CategoryAuth {
-      ID: String!
-      Nombre: String
-      Apellidos: String
-      FechaNacimiento: String!
-      Email: String!
-      Password: String!
-      Avatar: String
-      Ubicacion: String
-      SitioWeb: String
+  type Usuario {
+      _id: String
+      nombre: String
+      apellidos: String
+      fechaNacimiento: String
+      password: String
+      email: String
+      avatar: String
+      sitioWeb: String
   }
   input UserRegister {
-    Email: String!
-    Password: String!
-  }
-  type respuestalogin {
-    Token: String
+    email: String!
+    password: String!
+    nombre: String
+    apellidos: String
   }
   input modifyRegister{
-    Nombre: String
-    Apellidos: String
-    Ubicacion: String
-    SitioWeb: String
+    nombre: String
+    apellidos: String
+    ubicacion: String
+    sitioWeb: String
   }
   input avatar{
     avatar: String!
@@ -29,15 +27,15 @@ export const TypesDefAuth = `
 `;
 
 export const categoryQueriesAuth= `
-      verperfil(id: String!):  [CategoryAuth]!
-      getavatar(id: String!): CategoryAuth!
+      verperfil(id: String!):  Usuario,
+      getavatar(id: String!): Usuario
   `;
 export const categoryMutationsAuth = `
-      createUser(usuario: UserRegister!): CategoryAuth
-      loginUser(usuario: UserRegister!): respuestalogin
-      modifyUser(id: String!, usuario: modifyRegister): CategoryAuth
-      deleteUser(id: String!): String
-      uploadavatar(usuario: avatar): CategoryAuth
+      createUser(usuario: UserRegister!): Usuario,
+      loginUser(usuario: UserRegister!): Usuario,
+      modifyUser(id: String!, usuario: modifyRegister): Usuario,
+      deleteUser(id: String!): String,
+      uploadavatar(usuario: avatar): Usuario
 `;  
 
 
