@@ -26,12 +26,14 @@ const mergedTypeDefs = mergeSchemas(
 		'scalar JSON',
 		categoryTypeDef,
 		TypesDefPlay,
-		TypesDefAuth
+		TypesDefAuth,
+		TypesDefInte
 	],
 	[
 		categoryQueries,
 		categoryQueriesPlay,
-		categoryQueriesAuth
+		categoryQueriesAuth,
+		categoryQueriesInte
 	],
 	[
 		categoryMutations,
@@ -46,7 +48,8 @@ export default makeExecutableSchema({
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		categoryResolvers,
 		categoryResolversPlay,
-		categoryResolversAuth
+		categoryResolversAuth,
+		categoryResolversInte
 		
 	)
 });

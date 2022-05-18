@@ -1,11 +1,13 @@
+import context from 'koa/lib/context';
 import { generalRequest, getRequest } from '../../utilities';
 import { url, port} from './server';
 
-const URL = `http://${url}:${port}`;
+const URL = `https://${url}`;
 
 const resolvers = {
 	Query: {
-		verperfil: (_, { id }) =>
+		verperfil: (_, { id },context) =>
+			
 			generalRequest(`${URL}/verperfil?${id}`, 'GET'),
 		getavatar: (_, { id }) =>
 			generalRequest(`${URL}/verperfil?${id}`, 'GET'),

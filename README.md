@@ -10,3 +10,28 @@ Sounds API gateway.
         docker run -p 5000:5000 --add-host=host.docker.internal:host-gateway sounds_ag
 
 3. Ejecución de las peticiones HTTP sobre la API-GraphQL del API Gateway: http://localhost:5000/graphiql. Posibles errores corriendo _graphiql_ se debe a no coincidencia de _id_. Corregir desde la base de datos respectiva (ej. phpmyadmin).
+
+
+
+
+
+
+
+query de auth: 
+
+mutation{
+  createUser(usuario: {
+    Email: "als@lol.com",
+    Password:"123000"
+  }){
+    ID
+    Nombre
+    Apellidos
+    FechaNacimiento
+    Email
+    Password
+    Avatar
+    Ubicacion
+    SitioWeb
+  }
+}
