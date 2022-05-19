@@ -15,6 +15,10 @@ export const TypesDefAuth = `
     nombre: String
     apellidos: String
   }
+  input UserLogin {
+    email: String!
+    password: String!
+  }
   input modifyRegister{
     nombre: String
     apellidos: String
@@ -22,7 +26,10 @@ export const TypesDefAuth = `
     sitioWeb: String
   }
   input avatar{
-    avatar: String!
+    avatar: String
+  }
+  type respuestaLogin{
+    token: String!
   }
 `;
 
@@ -32,7 +39,7 @@ export const categoryQueriesAuth= `
   `;
 export const categoryMutationsAuth = `
       createUser(usuario: UserRegister!): Usuario,
-      loginUser(usuario: UserRegister!): Usuario,
+      loginUser(usuario: UserLogin!): respuestaLogin,
       modifyUser(id: String!, usuario: modifyRegister): Usuario,
       deleteUser(id: String!): String,
       uploadavatar(usuario: avatar): Usuario

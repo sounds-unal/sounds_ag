@@ -7,12 +7,11 @@ const URL = `http://${url}:${port}`;
 const resolvers = {
 	Query: {
 		verperfil: (_, { id }) =>	
-			generalRequest(`${URL}/verperfil?${id}`, 'GET', ).then(data =>{
-				console.log(data)
+			generalRequest(`${URL}/verperfil?id=${id}`, 'GET').then(data =>{
 				return data
 			}),
 		getavatar: (_, { id }) =>
-			generalRequest(`${URL}/verperfil?${id}`, 'GET').then(data =>{
+			generalRequest(`${URL}/verperfil?${id}`, 'GET', usuario).then(data =>{
 				console.log(data.avatar)
 				return data.avatar
 			}),
@@ -23,8 +22,10 @@ const resolvers = {
 			await generalRequest(`${URL}/registro`, 'POST', usuario);
 			return usuario;
 		},
-		loginUser:(_, {usuario}) =>
-			generalRequest(`${URL}/login`, 'POST'),
+		loginUser: async (_, {usuario}) =>{
+			const caca = await generalRequest(`${URL}/login`, 'POST', usuario);
+			return caca;
+		},
 		modifyUser:(_, {id, usuario}) =>
 			generalRequest(`${URL}/modifyperfil?${id}`, 'PUT'),
 		deleteUser:(_,{id, usuario}) =>
@@ -32,7 +33,7 @@ const resolvers = {
 		uploadavatar:(_,{ usuario}) =>
 			generalRequest(`${URL}/uploadavatar`, 'POST', usuario),	
 	}
-};
+}
 
 
 export default resolvers;
