@@ -4,7 +4,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { mergeSchemas } from './utilities';
 
-import {
+import { 
 	categoryMutations,
 	categoryQueries,
 	categoryTypeDef
@@ -20,6 +20,9 @@ import categoryResolversAuth from './sounds/sounds_auth/resolvers'
 import {TypesDefInte,categoryQueriesInte } from './sounds/sounds_inte/typeDefs';
 import categoryResolversInte from './sounds/sounds_inte/resolvers';
 
+import {TypesDefConfig,QueryConfig, MutationsConfig} from './sounds/sounds_config/typeDefs' ; 
+import categoryResolversConfig from './sounds/sounds_config/resolvers';
+
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
 	[
@@ -27,17 +30,20 @@ const mergedTypeDefs = mergeSchemas(
 		categoryTypeDef,
 		TypesDefPlay,
 		TypesDefAuth,
-		TypesDefInte
+		TypesDefInte,
+		TypesDefConfig
 	],
 	[
 		categoryQueries,
 		categoryQueriesPlay,
 		categoryQueriesAuth,
-		categoryQueriesInte
+		categoryQueriesInte,
+		QueryConfig
 	],
 	[
 		categoryMutations,
-		categoryMutationsAuth
+		categoryMutationsAuth,
+		MutationsConfig
 	]
 );
 
@@ -49,7 +55,8 @@ export default makeExecutableSchema({
 		categoryResolvers,
 		categoryResolversPlay,
 		categoryResolversAuth,
-		categoryResolversInte
+		categoryResolversInte,
+		categoryResolversConfig
 		
 	)
 });
