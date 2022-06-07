@@ -1,12 +1,15 @@
 import { generalRequest, getRequest } from '../../utilities';
 import { url, port} from './server';
 
-const URL = `http://${url}:${port}`;
+const URL = `${url}`;
 
 const resolvers = {
 	Query: {
 		update: (_) =>
-			generalRequest(`${URL}/update`, 'GET'),
+			generalRequest(`${URL}/update`, 'GET').then(data => {
+				console.log(data);
+				return data
+			}),
 		songsbyname: (_, { name }) =>
 			generalRequest(`${URL}/songs_by_name/${name}`, 'GET'),
 		songsbyartist: (_, { artist }) =>

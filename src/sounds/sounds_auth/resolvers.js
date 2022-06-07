@@ -6,7 +6,11 @@ const URL = `http://${url}:${port}`;
 const resolvers = {
 	Query: {
 		verperfil: (_, { id }) =>
-			generalRequest(`${URL}/verperfil?${id}`, 'GET'),
+			generalRequest(`${URL}/verperfil?id=${id}`, 'GET').then(data => {
+				console.log(data);
+				return data;
+				
+			}),
 		getavatar: (_, { id }) =>
 			generalRequest(`${URL}/verperfil?${id}`, 'GET'),
 				
@@ -21,7 +25,9 @@ const resolvers = {
 		deleteUser:(_,{id, usuario}) =>
 			generalRequest(`${URL}/eliminaruser?${id}`, 'DELETE', usuario),
 		uploadavatar:(_,{ usuario}) =>
-			generalRequest(`${URL}/uploadavatar`, 'POST', usuario),	
+			generalRequest(`${URL}/uploadavatar`, 'POST', usuario),
+		verperfilmut:(_,{id, settoken, usuario}) =>
+			generalRequest(`${URL}/verperfil?id=${id}`, 'POST', usuario),		
 	}
 };
 
