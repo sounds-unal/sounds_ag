@@ -1,5 +1,5 @@
 import { generalRequest, getRequest } from '../../utilities';
-import { url, port} from './server';
+import { url} from './server';
 
 const URL = `${url}`;
 

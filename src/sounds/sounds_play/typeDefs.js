@@ -5,8 +5,6 @@ export const TypesDefPlay = `
       song_path: String!
       song_liryc: String!
       artist: String!
-      createdAt: String!
-      updatedAt: String!
   }
   type CategoryLiryc {
     song_liryc: String!

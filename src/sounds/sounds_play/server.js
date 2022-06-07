@@ -1,3 +1,2 @@
-/* export const url = 'localhost'
-export const port = '3000'  */
-export const url = 'http://soundsplay-z5fiut5qsa-uc.a.run.app'
+export const url = 'https://sounds-play-z5fiut5qsa-uc.a.run.app'
+//export const port = '3000'
