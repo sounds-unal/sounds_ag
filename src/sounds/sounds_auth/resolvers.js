@@ -2,12 +2,12 @@ import context from 'koa/lib/context';
 import { generalRequest, getRequest } from '../../utilities';
 import { url, port} from './server';
 
+//const URL = `http://${url}:${port}`;
 const URL = `${url}`;
-
 const resolvers = {
 	Query: {
-		verperfil: (_, { id }) =>
-			generalRequest(`${URL}/verperfil?id=${id}`, 'GET').then(data => {
+		verperfil: (_, { id, token }) =>
+			generalRequest(`${URL}/verperfil?token=${token}&id=${id}`, 'GET').then(data => {
 				console.log(data);
 				return data;
 				
@@ -26,9 +26,7 @@ const resolvers = {
 		deleteUser:(_,{id, usuario}) =>
 			generalRequest(`${URL}/eliminaruser?${id}`, 'DELETE', usuario),
 		uploadavatar:(_,{ usuario}) =>
-			generalRequest(`${URL}/uploadavatar`, 'POST', usuario),
-		verperfilmut:(_,{id, settoken, usuario}) =>
-			generalRequest(`${URL}/verperfil?id=${id}`, 'POST', usuario),		
+			generalRequest(`${URL}/uploadavatar`, 'POST', usuario),	
 	}
 };
 

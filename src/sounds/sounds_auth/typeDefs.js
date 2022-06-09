@@ -14,6 +14,15 @@ export const TypesDefAuth = `
     email: String!
     password: String!
   }
+  input Register {
+    email: String!
+    password: String!
+    nombre: String!
+    apellidos: String!
+  }
+  input setToken {
+    token: String!
+  }
   type respuestalogin {
     token: String
   }
@@ -29,16 +38,15 @@ export const TypesDefAuth = `
 `;
 
 export const categoryQueriesAuth= `
-      verperfil(id: String!):  CategoryAuth!
+      verperfil(id: String!, token: String!):  CategoryAuth
       getavatar(id: String!): CategoryAuth!
   `;
 export const categoryMutationsAuth = `
-      createUser(usuario: UserRegister!): CategoryAuth
+      createUser(usuario: Register!): CategoryAuth
       loginUser(usuario: UserRegister!): respuestalogin
       modifyUser(id: String!, usuario: modifyRegister): CategoryAuth
       deleteUser(id: String!): String
       uploadavatar(usuario: avatar): CategoryAuth
-      verperfilmut(id : String!): CategoryAuth
 `;  
 
 

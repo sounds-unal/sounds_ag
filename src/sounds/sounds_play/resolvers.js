@@ -7,7 +7,6 @@ const resolvers = {
 	Query: {
 		update: (_) =>
 			generalRequest(`${URL}/update`, 'GET').then(data => {
-				console.log(data);
 				return data
 			}),
 		songsbyname: (_, { name }) =>
