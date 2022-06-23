@@ -2,7 +2,7 @@ import context from 'koa/lib/context';
 import { generalRequest, getRequest } from '../../utilities';
 import { url, port} from './server';
 
-const URL = `http://${url}:${port}`;
+const URL = `${url}`;
 //const URL = `${url}`;
 const resolvers = {
 	Query: {
