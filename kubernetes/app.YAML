@@ -1,0 +1,224 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sounds-ag
+  managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:progressDeadlineSeconds': {}
+          'f:replicas': {}
+          'f:revisionHistoryLimit': {}
+          'f:selector': {}
+          'f:strategy':
+            'f:rollingUpdate':
+              .: {}
+              'f:maxSurge': {}
+              'f:maxUnavailable': {}
+            'f:type': {}
+          'f:template':
+            'f:metadata':
+              'f:labels':
+                .: {}
+                'f:app': {}
+            'f:spec':
+              'f:containers':
+                'k:{"name":"sounds-ag-1"}':
+                  .: {}
+                  'f:image': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+                  'f:resources': {}
+                  'f:terminationMessagePath': {}
+                  'f:terminationMessagePolicy': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:terminationGracePeriodSeconds': {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: '2022-06-29T04:28:31Z'
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:deployment.kubernetes.io/revision': {}
+        'f:status':
+          'f:availableReplicas': {}
+          'f:conditions':
+            .: {}
+            'k:{"type":"Available"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+            'k:{"type":"Progressing"}':
+              .: {}
+              'f:lastTransitionTime': {}
+              'f:lastUpdateTime': {}
+              'f:message': {}
+              'f:reason': {}
+              'f:status': {}
+              'f:type': {}
+          'f:observedGeneration': {}
+          'f:readyReplicas': {}
+          'f:replicas': {}
+          'f:updatedReplicas': {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: '2022-06-29T04:28:45Z'
+  name: sounds-ag
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sounds-ag
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: sounds-ag
+    spec:
+      containers:
+        - image: gcr.io/sounds-354802/github.com/sounds-unal/sounds_ag
+          imagePullPolicy: IfNotPresent
+          name: sounds-ag-1
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  labels:
+    app: sounds-ag
+  managedFields:
+    - apiVersion: autoscaling/v2beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:maxReplicas': {}
+          'f:metrics': {}
+          'f:minReplicas': {}
+          'f:scaleTargetRef':
+            'f:apiVersion': {}
+            'f:kind': {}
+            'f:name': {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: '2022-06-29T04:28:31Z'
+    - apiVersion: autoscaling/v2beta2
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:conditions': {}
+          'f:currentMetrics': {}
+          'f:currentReplicas': {}
+          'f:desiredReplicas': {}
+      manager: vpa-recommender
+      operation: Update
+      subresource: status
+      time: '2022-06-29T04:28:48Z'
+  name: sounds-ag-hpa-g4iu
+  namespace: default
+spec:
+  maxReplicas: 5
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: sounds-ag
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  finalizers:
+    - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: sounds-ag
+  managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+        'f:spec':
+          'f:allocateLoadBalancerNodePorts': {}
+          'f:externalTrafficPolicy': {}
+          'f:internalTrafficPolicy': {}
+          'f:ports':
+            .: {}
+            'k:{"port":5000,"protocol":"TCP"}':
+              .: {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+      manager: GoogleCloudConsole
+      operation: Update
+      time: '2022-06-29T05:06:58Z'
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:finalizers':
+            .: {}
+            'v:"service.kubernetes.io/load-balancer-cleanup"': {}
+        'f:status':
+          'f:loadBalancer':
+            'f:ingress': {}
+      manager: kube-controller-manager
+      operation: Update
+      subresource: status
+      time: '2022-06-29T05:07:26Z'
+  name: sounds-ag-service
+  namespace: default
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.180.5.168
+  clusterIPs:
+    - 10.180.5.168
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+    - nodePort: 30794
+      port: 5000
+      protocol: TCP
+      targetPort: 5000
+  selector:
+    app: sounds-ag
+  sessionAffinity: None
+  type: LoadBalancer
